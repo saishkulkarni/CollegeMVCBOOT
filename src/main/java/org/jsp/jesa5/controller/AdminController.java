@@ -6,7 +6,6 @@ import org.jsp.jesa5.service.AdminService;
 import org.jsp.jesa5.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,23 +23,14 @@ public class AdminController {
 	@Autowired
 	CourseService courseService;
 
-	@GetMapping("login")
-	public ModelAndView load() {
-		return adminService.load();
-	}
-
 	@PostMapping("login")
 	public ModelAndView login(@ModelAttribute Login login, HttpSession session) {
 		return adminService.login(login, session);
 	}
 
-	@GetMapping("course")
-	public ModelAndView loadCourse() {
-		return courseService.load();
-	}
-	
 	@PostMapping("course")
 	public ModelAndView addCourse(@ModelAttribute Course course) {
 		return courseService.add(course);
 	}
+
 }

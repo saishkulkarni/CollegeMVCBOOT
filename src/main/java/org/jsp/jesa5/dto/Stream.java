@@ -12,16 +12,16 @@ import jakarta.persistence.ManyToMany;
 import lombok.Data;
 
 @Entity
-@Data
 @Component
-public class Course {
+@Data
+public class Stream {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int id;
 	String name;
 	double fee;
-	int duration;
 
 	@ManyToMany
-	List<Stream> streams;
+	List<Course> courses;
+
 }

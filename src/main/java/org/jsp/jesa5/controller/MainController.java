@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class MainController {
+
 	@GetMapping("/")
 	public ModelAndView homePage() {
 		ModelAndView view = new ModelAndView("Home");
