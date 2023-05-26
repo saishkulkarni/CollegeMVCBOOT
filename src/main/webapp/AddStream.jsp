@@ -1,6 +1,7 @@
+<%@page import="org.jsp.jesa5.dto.Course"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="x"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,15 +11,23 @@
 <body>
 	<h1>Enter Stream Details</h1>
 	<br>
-	<x:form action="/admin/stream" method="post">
-Stream Name: <input type="text" name="name">
-		<br>
-Stream Fee: <input type="text" name="fee">
-		<br>
+	<form action="/admin/stream" method="post">
+		Stream Name: <input type="text" name="name"> <br> Stream
+		Fee: <input type="text" name="fee"> <br> Select Course: <select
+			name="courseName">
+			<%
+			List<Course> list = (List<Course>) request.getAttribute("list");
+			for (Course course : list) {
+			%>
+			<option><%=course.getName()%></option>
+			<%
+			}
+			%>
 
+		</select>
 		<button type="reset">Cancel</button>
 		<button>Add</button>
-	</x:form>
+	</form>
 	<br>
 	<a href="/"><button>Home</button></a>
 </body>

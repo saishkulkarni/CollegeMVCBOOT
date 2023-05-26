@@ -1,3 +1,6 @@
+<%@page import="org.jsp.jesa5.dto.Course"%>
+<%@page import="java.util.List"%>
+<%@page import="org.jsp.jesa5.dao.CourseDao"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -13,7 +16,7 @@
 <a href="/AdminLogin.jsp"><button>Click here to Login as Admin</button></a>
 <%}else{ %>
 <a href="/AddCourse.jsp"><button>Add Course</button></a><br>
-<a href="/AddStream.jsp"><button>Add Stream</button></a><br>
+<a href="/admin/stream"><button>Add Stream</button></a><br>
 <a href="/logout"><button>Logout</button></a>
 <%} %>
 </body>
