@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,6 +23,6 @@ public class Course {
 	double fee;
 	int duration;
 
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL)
 	List<Stream> streams;
 }

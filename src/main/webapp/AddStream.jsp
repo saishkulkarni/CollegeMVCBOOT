@@ -9,11 +9,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h1>${msg }</h1>
 	<h1>Enter Stream Details</h1>
 	<br>
 	<form action="/admin/stream" method="post">
 		Stream Name: <input type="text" name="name"> <br> Stream
-		Fee: <input type="text" name="fee"> <br> Select Course: <select
+		Fee: <input type="text" name="fee"> <br>
+		Seats: <input type="number" name="seat"> <br>
+		 Select Course: <select
 			name="courseName">
 			<%
 			List<Course> list = (List<Course>) request.getAttribute("list");
@@ -23,7 +26,6 @@
 			<%
 			}
 			%>
-
 		</select>
 		<button type="reset">Cancel</button>
 		<button>Add</button>

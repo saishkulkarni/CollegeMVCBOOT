@@ -1,9 +1,11 @@
 package org.jsp.jesa5.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.jsp.jesa5.dao.CourseDao;
 import org.jsp.jesa5.dto.Course;
+import org.jsp.jesa5.dto.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,6 +39,39 @@ public class CourseService {
 		} else {
 			view.setViewName("AddStream");
 			view.addObject("list", list);
+		}
+		return view;
+	}
+
+	public ModelAndView saveStream(Stream stream, String courseName) {
+		ModelAndView view=new ModelAndView();
+		
+		Course course = courseDao.fetch(courseName);
+		List<Stream> streams = course.getStreams();
+		if (streams == null) {
+			streams = new ArrayList<Stream>();
+		}
+		boolean flag=true;
+		for(Stream s:streams)
+		{
+			if(s.getName().equalsIgnoreCase(stream.getName()))
+			{
+				flag=false;
+			}
+		}
+		if(flag)
+		{
+			streams.add(stream);
+			course.setStreams(streams);
+			courseDao.add(course);
+			view.setViewName("Home");
+			view.addObject("msg","Stream Added Success");
+		}
+		else {
+			List<Course> list = courseDao.fetch();
+			view.addObject("list", list);
+			view.addObject("msg","Stream "+stream.getName()+" already exists in the course "+courseName+"");
+			view.setViewName("AddStream");
 		}
 		return view;
 	}

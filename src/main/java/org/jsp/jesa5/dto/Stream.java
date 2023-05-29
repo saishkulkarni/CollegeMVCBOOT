@@ -1,14 +1,11 @@
 package org.jsp.jesa5.dto;
 
-import java.util.List;
-
 import org.springframework.stereotype.Component;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import lombok.Data;
 
 @Entity
@@ -20,8 +17,6 @@ public class Stream {
 	int id;
 	String name;
 	double fee;
-
-	@ManyToMany
-	List<Course> courses;
+	int seat;
 
 }
