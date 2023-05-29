@@ -25,6 +25,8 @@ public class Student {
 	private Date dob;
 	private boolean status;
 	private String gender;
+	private Date doj;
+	private String password;
 
 	@ManyToOne
 	private Course course;

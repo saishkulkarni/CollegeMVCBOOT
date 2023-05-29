@@ -16,7 +16,7 @@ Password:<input type="text" name="password" placeholder="Enter password" require
 </form>
 <br><br>
 <a href="StudentSignup.jsp"><button>New? Click here to Create an Account</button></a>
-<br>
+<br><br>
 <a href="/"><button>Home</button></a>
 </body>
 </html>
