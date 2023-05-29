@@ -14,5 +14,14 @@ public void save(Student student) {
 	repository.save(student);
 }
 
+public Student fetch(String email)
+{
+	return repository.findByEmail(email);
+}
+
+public Student fetch(long mobile)
+{
+	return repository.findByMobile(mobile);
+}
 
 }

@@ -17,15 +17,22 @@ public class StudentService {
 	StudentDao studentDao;
 
 	public ModelAndView signup(Student student, String date) {
+		ModelAndView view = new ModelAndView();
+		if(studentDao.fetch(student.getEmail())==null && studentDao.fetch(student.getMobile())==null )
+		{	
 		Date dob = Date.valueOf(date);
 		student.setDob(dob);
 		int age = Period.between(dob.toLocalDate(), LocalDate.now()).getYears();
 		student.setAge(age);
 
 		studentDao.save(student);
-
-		ModelAndView view = new ModelAndView("Home");
+		view.setViewName("Home");
 		view.addObject("success", "Student Account created Success");
+		}
+		else {
+			view.setViewName("StudentSignup");
+			view.addObject("fail", "Email or Phone already Exists");
+		}
 		return view;
 
 	}
