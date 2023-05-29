@@ -9,7 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>${msg }</h1>
+<h1 style="color:green">${success}</h1>
+<h1 style="color:red">${fail}</h1>
 	<h1>Enter Stream Details</h1>
 	<br>
 	<form action="/admin/stream" method="post">

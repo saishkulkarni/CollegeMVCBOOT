@@ -10,7 +10,8 @@
 <title>Home</title>
 </head>
 <body>
-<h1>${msg}</h1>
+<h1 style="color:green">${success}</h1>
+<h1 style="color:red">${fail}</h1>
 <h1>Welcome to Home page</h1><br>
 <%if(session.getAttribute("admin")==null){ %>
 <a href="/AdminLogin.jsp"><button>Click here to Login as Admin</button></a>

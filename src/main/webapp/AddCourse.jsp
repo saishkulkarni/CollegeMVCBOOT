@@ -7,6 +7,8 @@
 <title>Add Course</title>
 </head>
 <body>
+<h1 style="color:green">${success}</h1>
+<h1 style="color:red">${fail}</h1>
 	<h1>Enter Course Details</h1>
 	<br>
 	<form action="/admin/course" method="post">

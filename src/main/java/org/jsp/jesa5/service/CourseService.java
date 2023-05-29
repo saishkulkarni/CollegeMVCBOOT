@@ -17,14 +17,16 @@ public class CourseService {
 	CourseDao courseDao;
 
 	public ModelAndView add(Course course) {
-		ModelAndView view = new ModelAndView("Home");
+		ModelAndView view = new ModelAndView();
 
 		Course course2 = courseDao.fetch(course.getName());
 		if (course2 == null) {
 			courseDao.add(course);
-			view.addObject("msg", "Course Added Successfully");
+			view.setViewName("Home");
+			view.addObject("success", "Course Added Successfully");
 		} else {
-			view.addObject("msg", course.getName() + " Course Already Exists");
+			view.setViewName("AddCourse");
+			view.addObject("fail", course.getName() + " Course Already Exists");
 		}
 		return view;
 	}
@@ -35,7 +37,7 @@ public class CourseService {
 		List<Course> list = courseDao.fetch();
 		if (list.isEmpty()) {
 			view.setViewName("Home");
-			view.addObject("msg", "First Add Course");
+			view.addObject("fail", "First Add Course");
 		} else {
 			view.setViewName("AddStream");
 			view.addObject("list", list);
@@ -65,12 +67,12 @@ public class CourseService {
 			course.setStreams(streams);
 			courseDao.add(course);
 			view.setViewName("Home");
-			view.addObject("msg","Stream Added Success");
+			view.addObject("success","Stream Added Success");
 		}
 		else {
 			List<Course> list = courseDao.fetch();
 			view.addObject("list", list);
-			view.addObject("msg","Stream "+stream.getName()+" already exists in the course "+courseName+"");
+			view.addObject("fail","Stream "+stream.getName()+" already exists in the course "+courseName+"");
 			view.setViewName("AddStream");
 		}
 		return view;

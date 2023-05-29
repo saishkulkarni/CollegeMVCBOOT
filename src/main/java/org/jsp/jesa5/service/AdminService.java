@@ -15,14 +15,14 @@ public class AdminService {
 			if (login.getPassword().equals("admin")) {
 				session.setAttribute("admin", "admin");
 				view.setViewName("Home");
-				view.addObject("msg", "Login Success");
+				view.addObject("success", "Login Success");
 			} else {
 				view.setViewName("AdminLogin");
-				view.addObject("msg", "Password Wrong");
+				view.addObject("fail", "Password Wrong");
 			}
 		} else {
 			view.setViewName("AdminLogin");
-			view.addObject("msg", "Email Wrong");
+			view.addObject("fail", "Email Wrong");
 		}
 		return view;
 	}
