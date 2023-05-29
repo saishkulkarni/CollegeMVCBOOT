@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 
 @Entity
@@ -18,11 +19,14 @@ import lombok.Data;
 public class Course {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int id;
-	String name;
-	double fee;
-	int duration;
+	private int id;
+	private String name;
+	private double fee;
+	private int duration;
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	List<Stream> streams;
+	private List<Stream> streams;
+	
+	@OneToMany
+	private List<Student> students;
 }
