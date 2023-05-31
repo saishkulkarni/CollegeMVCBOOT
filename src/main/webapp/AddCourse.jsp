@@ -22,6 +22,6 @@ Course Duration: <input type="number" name="duration">
 		<button>Add</button>
 	</form>
 	<br>
-	<a href="/"><button>Home</button></a>
+	<a href="/AdminHome.jsp"><button>Back</button></a>
 </body>
 </html>

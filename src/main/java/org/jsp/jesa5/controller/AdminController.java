@@ -35,16 +35,14 @@ public class AdminController {
 	public ModelAndView addCourse(@ModelAttribute Course course) {
 		return courseService.add(course);
 	}
-	
+
 	@GetMapping("stream")
-	public ModelAndView checkCourse()
-	{
+	public ModelAndView checkCourse() {
 		return courseService.checkCourse();
 	}
 
 	@PostMapping("stream")
-	public ModelAndView saveStream(@ModelAttribute Stream stream,@RequestParam String courseName)
-	{
-		return courseService.saveStream(stream,courseName);
+	public ModelAndView saveStream(@ModelAttribute Stream stream, @RequestParam String courseName) {
+		return courseService.saveStream(stream, courseName);
 	}
 }

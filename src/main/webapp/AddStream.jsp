@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Add Stream</title>
 </head>
 <body>
 <h1 style="color:green">${success}</h1>
@@ -32,6 +32,6 @@
 		<button>Add</button>
 	</form>
 	<br>
-	<a href="/"><button>Home</button></a>
+	<a href="/AdminHome.jsp"><button>Back</button></a>
 </body>
 </html>

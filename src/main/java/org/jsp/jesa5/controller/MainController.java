@@ -11,7 +11,7 @@ public class MainController {
 
 	@GetMapping("/")
 	public ModelAndView homePage() {
-		ModelAndView view = new ModelAndView("Home");
+		ModelAndView view = new ModelAndView("/Home");
 		return view;
 	}
 
@@ -19,7 +19,7 @@ public class MainController {
 	public ModelAndView logout(HttpSession session) {
 		session.invalidate();
 		ModelAndView view = new ModelAndView("Home");
-		view.addObject("msg", "Logged out Successfully");
+		view.addObject("fail", "Logged out Successfully");
 		return view;
 	}
 }

@@ -7,21 +7,19 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class StudentDao {
-@Autowired
-StudentRepository repository;
+	@Autowired
+	StudentRepository repository;
 
-public void save(Student student) {
-	repository.save(student);
-}
+	public void save(Student student) {
+		repository.save(student);
+	}
 
-public Student fetch(String email)
-{
-	return repository.findByEmail(email);
-}
+	public Student fetch(String email) {
+		return repository.findByEmail(email);
+	}
 
-public Student fetch(long mobile)
-{
-	return repository.findByMobile(mobile);
-}
+	public Student fetch(long mobile) {
+		return repository.findByMobile(mobile);
+	}
 
 }

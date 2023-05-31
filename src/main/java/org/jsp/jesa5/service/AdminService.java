@@ -14,7 +14,7 @@ public class AdminService {
 		if (login.getEmail().equals("admin")) {
 			if (login.getPassword().equals("admin")) {
 				session.setAttribute("admin", "admin");
-				view.setViewName("Home");
+				view.setViewName("AdminHome");
 				view.addObject("success", "Login Success");
 			} else {
 				view.setViewName("AdminLogin");

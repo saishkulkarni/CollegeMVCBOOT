@@ -26,7 +26,7 @@ public class Course {
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Stream> streams;
-	
+
 	@OneToMany
 	private List<Student> students;
 }
