@@ -30,11 +30,14 @@ public class StudentController {
 	public ModelAndView login(@ModelAttribute Login login, HttpSession session) {
 		return studentService.login(login, session);
 	}
-	
+
 	@GetMapping("course")
-	public ModelAndView fetchStaff()
-	{
+	public ModelAndView fetchStaff() {
 		return studentService.fetchCourse();
 	}
-}
 
+	@PostMapping("enroll")
+	public ModelAndView enroll(@RequestParam String course, @RequestParam String stream, HttpSession session) {
+		return studentService.enroll(course, stream, session);
+	}
+}

@@ -40,9 +40,10 @@ function updateStreams() {
 </script>
 </head>
 <body>
+<form action="/student/enroll" method="post">
     <h1>Select Course and Stream</h1>
-    <select id="courseDropdown" onchange="updateStreams()">
-    <option>Select One Option</option>
+    <select id="courseDropdown" onchange="updateStreams()" name="course">
+    <option>Select One Course</option>
         <%
         for (Course course : list) {
         %>
@@ -51,7 +52,9 @@ function updateStreams() {
         }
         %>
     </select>
-    <select id="streamDropdown">
+    <select id="streamDropdown" name="stream">
     </select>
+    <button>Enroll</button><button type="reset">Cancel</button>
+</form>
 </body>
 </html>
