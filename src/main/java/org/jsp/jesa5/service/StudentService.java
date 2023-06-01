@@ -3,8 +3,11 @@ package org.jsp.jesa5.service;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 
+import org.jsp.jesa5.dao.CourseDao;
 import org.jsp.jesa5.dao.StudentDao;
+import org.jsp.jesa5.dto.Course;
 import org.jsp.jesa5.dto.Student;
 import org.jsp.jesa5.helper.Login;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,9 @@ public class StudentService {
 
 	@Autowired
 	StudentDao studentDao;
+
+	@Autowired
+	CourseDao courseDao;
 
 	public ModelAndView signup(Student student, String date) {
 		ModelAndView view = new ModelAndView();
@@ -54,6 +60,21 @@ public class StudentService {
 			}
 		}
 
+		return view;
+	}
+
+	public ModelAndView fetchCourse() {
+		ModelAndView view = new ModelAndView();
+
+		List<Course> list = courseDao.fetch();
+		if (list.isEmpty()) {
+			view.setViewName("StudentHome");
+			view.addObject("fail", "No Courses to Opt");
+		}
+		else {
+			view.setViewName("/EnrollCourse");
+			view.addObject("list", list);
+		}
 		return view;
 	}
 

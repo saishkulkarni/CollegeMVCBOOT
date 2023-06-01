@@ -9,6 +9,10 @@
 <body>
 	<h1 style="color: green">${success}</h1>
 	<h1 style="color: red">${fail}</h1>
+	
+	<a href="/student/course"><button>Enroll for course</button></a>
+	
+	
 	<a href="/logout"><button>Logout</button></a>
 </body>
 </html>

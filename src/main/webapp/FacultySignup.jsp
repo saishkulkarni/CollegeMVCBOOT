@@ -7,7 +7,7 @@
 <title>Faculty Signup</title>
 </head>
 <body>
-<h1 style="color: green">${success}</h1>
+	<h1 style="color: green">${success}</h1>
 	<h1 style="color: red">${fail}</h1>
 	<form action="/faculty/signup" method="post">
 		Name:<input type="text" name="name"><br> Email:<input
