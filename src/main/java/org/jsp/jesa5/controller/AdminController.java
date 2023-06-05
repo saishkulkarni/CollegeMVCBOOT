@@ -5,6 +5,7 @@ import org.jsp.jesa5.dto.Stream;
 import org.jsp.jesa5.helper.Login;
 import org.jsp.jesa5.service.AdminService;
 import org.jsp.jesa5.service.CourseService;
+import org.jsp.jesa5.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,9 @@ public class AdminController {
 
 	@Autowired
 	CourseService courseService;
+	
+	@Autowired
+	StudentService studentService;
 
 	@PostMapping("login")
 	public ModelAndView login(@ModelAttribute Login login, HttpSession session) {
@@ -44,5 +48,11 @@ public class AdminController {
 	@PostMapping("stream")
 	public ModelAndView saveStream(@ModelAttribute Stream stream, @RequestParam String courseName) {
 		return courseService.saveStream(stream, courseName);
+	}
+	
+	@GetMapping("admission")
+	public ModelAndView admission()
+	{
+		return studentService.fetchAllAcceptedStudent();
 	}
 }

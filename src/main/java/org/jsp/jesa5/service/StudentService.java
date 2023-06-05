@@ -1,6 +1,7 @@
 package org.jsp.jesa5.service;
 
 import java.sql.Date;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
@@ -94,7 +95,7 @@ public class StudentService {
 				view.addObject("course", course);
 				view.addObject("stream", stream);
 				view.addObject("quota", "Normal");
-				view.addObject("fee", course1.getFee() + stream1.getFee());
+				view.addObject("fee", NumberFormat.getInstance().format(course1.getFee() + stream1.getFee()));
 				view.setViewName("StudentAdmission");
 				student.setQuota("Normal");
 				student.setCourse(course1);
@@ -152,7 +153,7 @@ public class StudentService {
 		}
 		student.setStream(stream);
 		studentDao.save(student);
-		view.addObject("pass", "Successfully Enrolled Pay fee and Wait for confirmation");
+		view.addObject("success", "Successfully Enrolled Pay fee and Wait for confirmation");
 		return view;
 	}
 
@@ -166,4 +167,26 @@ public class StudentService {
 		return view;
 	}
 
+	public ModelAndView fetchAllAcceptedStudent() {
+		ModelAndView view = new ModelAndView();
+		List<Student> list = studentDao.fetchAllApprovedStudents();
+		if (list.isEmpty()) {
+			view.setViewName("AdminHome");
+			view.addObject("fail", "Currently no student have enrolled");
+		} else {
+			view.setViewName("ApproveStudent");
+			view.addObject("students", list);
+		}
+
+		return view;
+	}
+
+	public ModelAndView approveStudent(int id) {
+		ModelAndView view=new ModelAndView("AdminHome");
+		view.addObject("success", "Approved Success");
+		Student student=studentDao.fetch(id);
+		student.setDoj(Date.valueOf(LocalDate.now()));
+		studentDao.save(student);
+		return view;
+	}
 }
