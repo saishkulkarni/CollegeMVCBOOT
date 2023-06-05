@@ -40,4 +40,16 @@ public class StudentController {
 	public ModelAndView enroll(@RequestParam String course, @RequestParam String stream, HttpSession session) {
 		return studentService.enroll(course, stream, session);
 	}
+	
+	@GetMapping("accept")
+	public ModelAndView accept(HttpSession session)
+	{
+		return studentService.accept(session);
+	}
+	
+	@GetMapping("reject")
+	public ModelAndView reject(HttpSession session)
+	{
+		return studentService.reject(session);
+	}
 }

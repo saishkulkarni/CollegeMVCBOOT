@@ -17,14 +17,13 @@
 	request.setAttribute("fail","Invalid Session Login Again");
 	request.getRequestDispatcher("StudentLogin.jsp").forward(request,response);
 	}
-	else{
-		if(student.getStream()==null)
-		{
-	%>
-	<a href="/student/course"><button>Enroll for course</button></a>
-	<%}%>
+	else{%>
+<%if(!student.isStatus()){%>
+<a href="/student/course"><button>Enroll for course</button></a>
+<%}%>
+<a href="/logout"><button>Logout</button></a>
 	
-	<a href="/logout"><button>Logout</button></a>
+	
 	<%} %>
 </body>
 </html>

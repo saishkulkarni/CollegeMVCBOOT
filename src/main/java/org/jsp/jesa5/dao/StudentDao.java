@@ -10,8 +10,8 @@ public class StudentDao {
 	@Autowired
 	StudentRepository repository;
 
-	public void save(Student student) {
-		repository.save(student);
+	public Student save(Student student) {
+		return repository.save(student);
 	}
 
 	public Student fetch(String email) {

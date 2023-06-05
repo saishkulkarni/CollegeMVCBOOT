@@ -21,6 +21,8 @@ public class Stream {
 	private String name;
 	private double fee;
 	private int seat;
+	private int mseat;
+	private int nseat;
 
 	@OneToMany
 	private List<Student> students;

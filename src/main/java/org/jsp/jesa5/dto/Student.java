@@ -4,6 +4,7 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,11 +30,12 @@ public class Student {
 	private String password;
 	private double sslc;
 	private double puc;
+	private String quota;
 
 	@ManyToOne
 	private Course course;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Stream stream;
 
 }
