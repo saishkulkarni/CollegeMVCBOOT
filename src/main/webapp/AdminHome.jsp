@@ -13,6 +13,10 @@
 	<a href="/AddCourse.jsp"><button>Add Course</button></a>
 	<a href="/admin/stream"><button>Add Stream</button></a>
 	<a href="/admin/admission"><button>Approve Admission</button></a>
+	<a href="/UpdateCourseFee.jsp"><button>Update Course Fee</button></a>
+	<a href="/UpdateStreamFee.jsp"><button>Update Stream Fee</button></a>
+	<a href=""><button>Approve Staff</button></a>
+	<a href=""><button>Approve Faculty</button></a>
 	<a href="/logout"><button>Logout</button></a>
 </body>
 </html>

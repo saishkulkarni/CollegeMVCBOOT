@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
@@ -20,6 +21,7 @@ public class Student {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
+	private String usn;
 	private String email;
 	private long mobile;
 	private int age;
@@ -31,6 +33,9 @@ public class Student {
 	private double sslc;
 	private double puc;
 	private String quota;
+	
+	@Lob
+	byte[] picture;
 
 	@ManyToOne
 	private Course course;
