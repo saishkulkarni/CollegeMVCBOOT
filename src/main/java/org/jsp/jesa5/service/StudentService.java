@@ -1,5 +1,7 @@
 package org.jsp.jesa5.service;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Date;
 import java.text.NumberFormat;
 import java.time.LocalDate;
@@ -14,6 +16,7 @@ import org.jsp.jesa5.dto.Student;
 import org.jsp.jesa5.helper.Login;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.http.HttpSession;
@@ -27,14 +30,21 @@ public class StudentService {
 	@Autowired
 	CourseDao courseDao;
 
-	public ModelAndView signup(Student student, String date) {
+	public ModelAndView signup(Student student, String date, MultipartFile pic) throws IOException {
 		ModelAndView view = new ModelAndView();
 		if (studentDao.fetch(student.getEmail()) == null && studentDao.fetch(student.getMobile()) == null) {
 			Date dob = Date.valueOf(date);
 			student.setDob(dob);
 			int age = Period.between(dob.toLocalDate(), LocalDate.now()).getYears();
 			student.setAge(age);
-
+			
+			byte[] picture = null;
+			if (pic != null) {
+				InputStream inputStream = pic.getInputStream();
+				picture = new byte[inputStream.available()];
+				inputStream.read(picture);
+			}
+			student.setPicture(picture);
 			studentDao.save(student);
 			view.setViewName("Home");
 			view.addObject("success", "Student Account created Success");

@@ -1,5 +1,7 @@
 package org.jsp.jesa5.controller;
 
+import java.io.IOException;
+
 import org.jsp.jesa5.dto.Student;
 import org.jsp.jesa5.helper.Login;
 import org.jsp.jesa5.service.StudentService;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.http.HttpSession;
@@ -23,8 +26,8 @@ public class StudentController {
 	StudentService studentService;
 
 	@PostMapping("signup")
-	public ModelAndView signup(@ModelAttribute Student student, @RequestParam String date) {
-		return studentService.signup(student, date);
+	public ModelAndView signup(@ModelAttribute Student student, @RequestParam MultipartFile pic,@RequestParam String date) throws IOException {
+		return studentService.signup(student, date,pic);
 	}
 
 	@PostMapping("login")
