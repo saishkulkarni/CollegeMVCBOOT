@@ -4,6 +4,7 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,5 +30,6 @@ public class Staff {
 	private String designation;
 	
 	@Lob
+	@Column(columnDefinition = "MEDIUMBLOB")
 	byte[] picture;
 }
