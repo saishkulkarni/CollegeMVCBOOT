@@ -3,6 +3,7 @@ package org.jsp.jesa5.service;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 
 import org.jsp.jesa5.dao.StaffDao;
 import org.jsp.jesa5.dto.Staff;
@@ -44,15 +45,47 @@ public class StaffService {
 			view.addObject("fail", "Email Wrong");
 		} else {
 			if (login.getPassword().equals(staff.getPassword())) {
-				session.setAttribute("staff", "staff");
-				view.setViewName("StaffHome");
-				view.addObject("success", "Login Success");
+				if (staff.isStatus()) {
+					session.setAttribute("staff", "staff");
+					view.setViewName("StaffHome");
+					view.addObject("success", "Login Success");
+				} else {
+					view.setViewName("StaffLogin");
+					view.addObject("fail", "Wait for Admins Approval");
+				}
 			} else {
 				view.setViewName("StaffLogin");
 				view.addObject("fail", "Password Wrong");
 			}
 		}
 
+		return view;
+	}
+
+	public ModelAndView fetchAll() {
+		ModelAndView view = new ModelAndView();
+		List<Staff> list = staffDao.fetch();
+		if (list.isEmpty()) {
+			view.addObject("fail", "No Staff Registered Yet");
+			view.setViewName("AdminHome");
+		} else {
+			view.addObject("list", list);
+			view.setViewName("ApproveStaff");
+		}
+		return view;
+	}
+
+	public ModelAndView changeStatus(int id) {
+		ModelAndView view = new ModelAndView();
+
+		Staff staff = staffDao.fetchById(id);
+		if (staff.isStatus())
+			staff.setStatus(false);
+		else
+			staff.setStatus(true);
+
+		view.addObject("list", staffDao.fetch());
+		view.setViewName("ApproveStaff");
 		return view;
 	}
 }

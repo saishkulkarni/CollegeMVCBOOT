@@ -1,5 +1,8 @@
 package org.jsp.jesa5.dao;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.jsp.jesa5.dto.Staff;
 import org.jsp.jesa5.repository.StaffRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +23,17 @@ public class StaffDao {
 
 	public Staff fetch(long mobile) {
 		return repository.findByMobile(mobile);
+	}
+
+	public List<Staff> fetch() {
+		return repository.findAll();
+	}
+
+	public Staff fetchById(int id) {
+		Optional<Staff> op = repository.findById(id);
+		if (op.isEmpty())
+			return null;
+		else
+			return op.get();
 	}
 }

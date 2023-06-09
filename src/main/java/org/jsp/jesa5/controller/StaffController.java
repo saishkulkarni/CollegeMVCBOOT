@@ -5,7 +5,9 @@ import org.jsp.jesa5.helper.Login;
 import org.jsp.jesa5.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,5 +29,17 @@ public class StaffController {
 	@PostMapping("login")
 	public ModelAndView login(@ModelAttribute Login login, HttpSession session) {
 		return staffService.login(login, session);
+	}
+	
+	@GetMapping("fetchall")
+	public ModelAndView fetchAll()
+	{
+		return staffService.fetchAll();
+	}
+	
+	@GetMapping("change/{id}")
+	public ModelAndView changeStatus(@PathVariable int id)
+	{
+		return staffService.changeStatus(id);
 	}
 }

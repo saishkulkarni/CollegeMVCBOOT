@@ -3,6 +3,7 @@ package org.jsp.jesa5.service;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 
 import org.jsp.jesa5.dao.FacultyDao;
 import org.jsp.jesa5.dto.Faculty;
@@ -44,15 +45,47 @@ public class FacultyService {
 			view.addObject("fail", "Email Wrong");
 		} else {
 			if (login.getPassword().equals(faculty.getPassword())) {
-				session.setAttribute("faculty", "faculty");
-				view.setViewName("FacultyHome");
-				view.addObject("success", "Login Success");
+				if (faculty.isStatus()) {
+					session.setAttribute("faculty", "faculty");
+					view.setViewName("FacultyHome");
+					view.addObject("success", "Login Success");
+				} else {
+					view.setViewName("FacultyLogin");
+					view.addObject("fail", "Wait for Admin Approval");
+				}
 			} else {
 				view.setViewName("FacultyLogin");
 				view.addObject("fail", "Password Wrong");
 			}
 		}
 
+		return view;
+	}
+
+	public ModelAndView fetchAll() {
+		ModelAndView view = new ModelAndView();
+		List<Faculty> list = facultyDao.fetch();
+		if (list.isEmpty()) {
+			view.addObject("fail", "No Faculty Registered Yet");
+			view.setViewName("AdminHome");
+		} else {
+			view.addObject("list", list);
+			view.setViewName("ApproveFaculty");
+		}
+		return view;
+	}
+
+	public ModelAndView changeStatus(int id) {
+		ModelAndView view = new ModelAndView();
+
+		Faculty faculty = facultyDao.fetchById(id);
+		if (faculty.isStatus())
+			faculty.setStatus(false);
+		else
+			faculty.setStatus(true);
+
+		view.addObject("list", facultyDao.fetch());
+		view.setViewName("ApproveFaculty");
 		return view;
 	}
 
