@@ -1,5 +1,7 @@
 package org.jsp.jesa5.service;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
@@ -8,8 +10,10 @@ import java.util.List;
 import org.jsp.jesa5.dao.FacultyDao;
 import org.jsp.jesa5.dto.Faculty;
 import org.jsp.jesa5.helper.Login;
+import org.jsp.jesa5.helper.SendMail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.http.HttpSession;
@@ -19,14 +23,20 @@ public class FacultyService {
 	@Autowired
 	FacultyDao facultyDao;
 
-	public ModelAndView signup(Faculty faculty, String date) {
+	public ModelAndView signup(Faculty faculty, String date, MultipartFile pic) throws IOException {
 		ModelAndView view = new ModelAndView();
 		if (facultyDao.fetch(faculty.getEmail()) == null && facultyDao.fetch(faculty.getMobile()) == null) {
 			Date dob = Date.valueOf(date);
 			faculty.setDob(dob);
 			int age = Period.between(dob.toLocalDate(), LocalDate.now()).getYears();
 			faculty.setAge(age);
-
+			byte[] picture = null;
+			if (pic != null) {
+				InputStream inputStream = pic.getInputStream();
+				picture = new byte[inputStream.available()];
+				inputStream.read(picture);
+			}
+			faculty.setPicture(picture);
 			facultyDao.save(faculty);
 			view.setViewName("Home");
 			view.addObject("success", "Faculty Account created Success");

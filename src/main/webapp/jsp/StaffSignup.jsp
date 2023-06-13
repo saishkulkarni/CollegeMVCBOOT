@@ -17,7 +17,8 @@
 			name="gender" value="female">Female<br> Date of Birth: <input
 			type="date" name="date"><br> Password:<input
 			type="password" name="password"><br>Designation:<input
-			type="text" name="designation"><br>
+			type="text" name="designation"><br>Picture: <input type="file"
+			name="pic" accept="image/png, image/gif, image/jpeg">
 		<button type="reset">Cancel</button>
 		<button>Signup</button>
 	</form>

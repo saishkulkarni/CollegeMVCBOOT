@@ -19,7 +19,8 @@
 			type="password" name="password"><br>Experience:<input
 			type="text" name="experience"><br>Subject:<input
 			type="text" name="subject">Education:<input
-			type="text" name="education"><br>
+			type="text" name="education"><br>Picture: <input type="file"
+			name="pic" accept="image/png, image/gif, image/jpeg">
 		<button type="reset">Cancel</button>
 		<button>Signup</button>
 	</form>

@@ -31,9 +31,9 @@ public class StaffDao {
 
 	public Staff fetchById(int id) {
 		Optional<Staff> op = repository.findById(id);
-		if (op.isEmpty())
-			return null;
-		else
+		if (op.isPresent())
 			return op.get();
+		else
+			return null;
 	}
 }

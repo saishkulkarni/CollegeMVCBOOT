@@ -14,6 +14,7 @@ import org.jsp.jesa5.dto.Course;
 import org.jsp.jesa5.dto.Stream;
 import org.jsp.jesa5.dto.Student;
 import org.jsp.jesa5.helper.Login;
+import org.jsp.jesa5.helper.SendMail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,6 +29,9 @@ public class StudentService {
 	StudentDao studentDao;
 
 	@Autowired
+	SendMail sendMail;
+
+	@Autowired
 	CourseDao courseDao;
 
 	public ModelAndView signup(Student student, String date, MultipartFile pic) throws IOException {
@@ -37,7 +41,7 @@ public class StudentService {
 			student.setDob(dob);
 			int age = Period.between(dob.toLocalDate(), LocalDate.now()).getYears();
 			student.setAge(age);
-			
+
 			byte[] picture = null;
 			if (pic != null) {
 				InputStream inputStream = pic.getInputStream();
@@ -64,6 +68,7 @@ public class StudentService {
 		} else {
 			if (login.getPassword().equals(student.getPassword())) {
 				session.setAttribute("student", student);
+				sendMail.send(student);
 				view.setViewName("StudentHome");
 				view.addObject("success", "Login Success");
 			} else {
@@ -192,9 +197,9 @@ public class StudentService {
 	}
 
 	public ModelAndView approveStudent(int id) {
-		ModelAndView view=new ModelAndView("AdminHome");
+		ModelAndView view = new ModelAndView("AdminHome");
 		view.addObject("success", "Approved Success");
-		Student student=studentDao.fetch(id);
+		Student student = studentDao.fetch(id);
 		student.setDoj(Date.valueOf(LocalDate.now()));
 		studentDao.save(student);
 		return view;

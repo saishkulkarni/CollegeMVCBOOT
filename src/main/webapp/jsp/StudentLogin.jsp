@@ -14,7 +14,7 @@ Email:<input type="text" name="email" placeholder="Enter email" required="requir
 Password:<input type="text" name="password" placeholder="Enter password" required="required">
 <button>Login</button><button type="reset">Cancel</button>
 </form>
-<a href="/StudentSignup.jsp"><button>New? Click here to Create an Account</button></a>
+<a href="/jsp/StudentSignup.jsp"><button>New? Click here to Create an Account</button></a>
 <a href="/"><button>Home</button></a>
 </body>
 </html>

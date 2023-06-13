@@ -32,9 +32,9 @@ public class FacultyDao {
 
 	public Faculty fetchById(int id) {
 		Optional<Faculty> op = repository.findById(id);
-		if (op.isEmpty())
-			return null;
-		else
+		if (op.isPresent())
 			return op.get();
+		else
+			return null;
 	}
 }
